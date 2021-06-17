@@ -1,7 +1,10 @@
 import React from "react"
 import Layout from "../components/Layout"
+import { Link, graphql } from "gatsby"
+import RecipesList from "../components/RecipesList"
 
-function Contact() {
+function Contact({ data }) {
+  const recipes = data.allContentfulRecipe.nodes
   return (
     <Layout>
       <main className="page">
@@ -44,9 +47,33 @@ function Contact() {
             </form>
           </article>
         </section>
+        <section className="featured-recipes">
+          <h5>Take a look at these!</h5>
+          <RecipesList recipes={recipes} />
+        </section>
       </main>
     </Layout>
   )
 }
-
+export const query = graphql`
+  {
+    allContentfulRecipe(
+      sort: { fields: title, order: ASC }
+      filter: { featured: { eq: true } }
+    ) {
+      nodes {
+        id
+        title
+        cookTime
+        prepTime
+        content {
+          id
+        }
+        image {
+          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+        }
+      }
+    }
+  }
+`
 export default Contact
