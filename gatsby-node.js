@@ -1,4 +1,6 @@
 const path = require("path")
+import { graphql } from "gatsby"
+import RecipesList from '../compentents/RecipesList'
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
