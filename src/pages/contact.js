@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/Layout"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import RecipesList from "../components/RecipesList"
 
 function Contact({ data }) {
@@ -28,7 +28,11 @@ function Contact({ data }) {
             </p>
           </article>
           <article>
-            <form action="" className="form contact-form">
+            <form
+              action="https://formspree.io/f/meqvzjky"
+              method="POST"
+              className="form contact-form"
+            >
               <div className="form-row">
                 <label htmlFor="name">Your Name</label>
                 <input type="text" name="name" id="name" />

@@ -43,5 +43,30 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_API_KEY,
       },
     },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Montserrat",
+              variants: ["300", "400", "500"],
+              //subsets: ['latin']
+              //text: 'Hello'
+              //fontDisplay: 'swap',
+              //strategy: 'selfHosted' // 'base64' || 'cdn'
+            },
+            {
+              family: "roboto",
+              variants: ["400", "500", "600", "700"],
+              //subsets: ['latin']
+              //text: 'Hello'
+              //fontDisplay: 'swap',
+              //strategy: 'selfHosted' // 'base64' || 'cdn'
+            },
+          ],
+        },
+      },
+    },
   ],
 }

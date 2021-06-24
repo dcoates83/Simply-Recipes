@@ -2,18 +2,17 @@ import React from "react"
 import { graphql } from "gatsby"
 import RecipesList from "../components/RecipesList"
 import Layout from "../components/Layout"
-const TagTemplate = ({ data }) => {
-  const recipes = data.allContentfulRecipe
+
+const TagTemplate = ({ data, pageContext }) => {
+  const recipes = data.allContentfulRecipe.nodes
   return (
     <Layout>
       <main className="page">
-        <h2>Tag name</h2>
+        <h2>{pageContext.tag}</h2>
         <div className="tag-recipes">
-          <RecipesList recipes={recipe} />
-          // error will be fixed in next vid
+          <RecipesList recipes={recipes} />
         </div>
       </main>
-      <h2>Tag Template Page</h2>
     </Layout>
   )
 }
@@ -24,12 +23,12 @@ export const query = graphql`
       filter: { content: { tags: { eq: $tag } } }
     ) {
       nodes {
-        cookTime
-        id
-        prepTime
         title
+        id
+        cookTime
+        prepTime
         image {
-          gatsbyImageData(placeholder: TRACED_SVG, layout: CONSTRAINED)
+          gatsbyImageData(layout: CONSTRAINED, placeholder: TRACED_SVG)
         }
       }
     }
